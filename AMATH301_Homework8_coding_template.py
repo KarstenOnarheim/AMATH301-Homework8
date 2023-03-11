@@ -3,14 +3,22 @@ import matplotlib.pyplot as plt
 # You will need to install "opencv-python" on Thonny. Go to "Tools -> Manage
 # Packages" and then type in "opencv-python" and click install.
 import cv2
+import scipy
 
 
 ##################### Coding Problem 1 ##########################
 ## Part a - Define the 3x3 rotation matrix.
+def R(theta):
+    return np.array([[np.cos(theta), -np.sin(theta), 0],
+                     [np.sin(theta), np.cos(theta), 0],
+                     [0, 0, 1]])
+A1 = R(np.pi / 4)
 
 ## Part b - Define the vector y, setup the algebraic problem, and then solve for x
 
-
+y = [3, np.pi, 4]
+x = scipy.linalg.solve(A1, y)
+A2 = x
 
 ######################### Coding problem 2 ###################
 ## Part (a) - Think about how the matrix equation is setup!
