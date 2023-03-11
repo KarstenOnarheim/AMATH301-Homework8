@@ -16,10 +16,9 @@ A1 = R(np.pi / 4)
 
 ## Part b - Define the vector y, setup the algebraic problem, and then solve for x
 
-y = [3, np.pi, 4]
+y = [[3], [np.pi], [4]]
 x = scipy.linalg.solve(A1, y)
-A2 = x
-
+A2 = xopencv-python
 ######################### Coding problem 2 ###################
 ## Part (a) - Think about how the matrix equation is setup!
 
@@ -67,10 +66,10 @@ AA[j, 15-1] = -4*s
 AA[j, 16-1] = -4*s
 # Equation 7
 j = 7-1
-AA[j, -1] = -1
-AA[j, -1] = 1
-AA[j, -1] = -s
-AA[j, -1] = s
+AA[j, 4-1] = -1
+AA[j, 5-1] = 1
+AA[j, 17-1] = -s
+AA[j, 18-1] = s
 # Equation 8
 j = 8-1
 AA[j, 17-1] = -4*s
@@ -136,40 +135,58 @@ AA[j, 13-1] = 4*s
 b[j] = W11
 
 ## Part c - save A
-print(np.linalg.norm(AA))
-print(sum(sum(AA)))
+A3 = AA
 ## Part d - Find the forces
+x = scipy.linalg.solve(AA, b)
+A4 = x
 
 ## Part e - Find the largest force
 # Make sure you have the order correct: we want the largest OF the absolute
 # values!
-
+A5 = np.amax(np.abs(x))
 
 ## Part f - We now need to loop somehow. Once one of the forces exceeds 44000
 # Newtons, the bridge collapses. It *can* be exactly 44000 Newtons without
 # collapsing.
 # You will need a break statement if the bridge collapses!
-
-
+maxWeight = 0
+index = 0
+for k in range(10000):
+    b[17-1] = b[17-1] + 5
+    forceList = scipy.linalg.solve(AA, b)
+    if(np.amax(np.abs(forceList)) > 44000):
+        maxWeight = b[17-1, 0]
+        index = np.argmax(np.abs(x))
+        break
+A6 = maxWeight
+A7 = index + 1
 ##################### Coding Problem 3 ##########################
 ## Load in the image of beautiful Olive
 A = cv2.imread('olive.jpg', 0) # Make sure that 'olive.jpg' is in the same
                                # folder as this file
-
+A8 = A.shape[0]*A.shape[1]
 ## Part (a) - Perform SVD
 U, S, Vt = np.linalg.svd(A, full_matrices=False) # Vt = V transpose
+A9 = U
+A10 = S
+A11 = Vt.T
 
 ## Part (b) - Find the 15 largest singular values.
 # Remember that the singular values are ranked by default!
+A12 = S[:15]
 
 ## Part (c) - Calculate the rank-1 energy proportion
 total_energy = np.sum(S)
-# Now use that to get A12
+A13 = S[0] / total_energy
 
 ## Part (d) - Calculate the proportion of energy in the rank-15 approximation
+A14 = np.sum(A12) / total_energy
 
 ## Part (e) - Find the rank-r approximation that holds 75% of the total energy.
 # Use np.where! Don't hard code this!
-
-
-
+r = 1
+for k in range(250):
+    if(sum(S[:r]) / total_energy >= .75):
+        break
+    r = r+1
+A15 = r
