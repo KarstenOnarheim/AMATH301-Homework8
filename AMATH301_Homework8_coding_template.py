@@ -26,7 +26,9 @@ A2 = x
 ## Part (b) - Write the matrix-vector equation
 # Define W8, W9, W10, and W11
 W8 = 12000
-# etc.
+W9 = 9200
+W10 = 9000
+W11 = 19200
 
 # Predefine the square-root term and the matrix, A, and the vector b
 s = 1 / np.sqrt(17) 
@@ -39,54 +41,59 @@ j = 1-1 # because python indexing begins at 0, F1 is actually F[0]
 AA[j, 1-1] = -s # Coefficient of F1
 AA[j, 2-1] = 1  # Coefficient of F2
 AA[j, 12-1] = s # Coefficient of F12
-
 # Equation 2
 j = 2-1  # because python indexing begins at 0, F[1] is actually F[0]
 AA[j, 1-1] = -4 * s # Coefficient of F1
 AA[j, 12-1] = -4 * s # Coefficient of F12
-
-
 # Equation 3
-j = 3-1 
-# You fill this one in
-
+j = 3-1
+AA[j, 2-1] = -1
+AA[j, 3-1] = 1
+AA[j, 13-1] = -s
+AA[j, 14-1] = s
 # Equation 4
-j = 4-1 
-# You fill this one in
-
+j = 4-1
+AA[j, 13-1] = -4*s
+AA[j, 14-1] = -4*s
 # Equation 5
-j = 5-1 
-# You fill this one in
-
+j = 5-1
+AA[j, 3-1] = -1
+AA[j, 4-1] = 1
+AA[j, 15-1] = -s
+AA[j, 16-1] = s
 # Equation 6
-j = 6-1 
-# You fill this one in
-
+j = 6-1
+AA[j, 15-1] = -4*s
+AA[j, 16-1] = -4*s
 # Equation 7
-j = 7-1 
-# You fill this one in
-
+j = 7-1
+AA[j, -1] = -1
+AA[j, -1] = 1
+AA[j, -1] = -s
+AA[j, -1] = s
 # Equation 8
-j = 8-1 
-# You fill this one in
-
-
+j = 8-1
+AA[j, 17-1] = -4*s
+AA[j, 18-1] = -4*s
 # Equation 9
-j = 9-1 
-# You fill this one in
-
+j = 9-1
+AA[j, 5-1] = -1
+AA[j, 6-1] = s
+AA[j, 19-1] = -s
 # Equation 10
-j = 10-1 
-# You fill this one in
-
+j = 10-1
+AA[j, 6-1] = -4*s
+AA[j, 19-1] = -4*s
 # Equation 11
-j = 11-1 
-# You fill this one in
-
+j = 11-1
+AA[j, 6-1] = -s
+AA[j, 7-1] = -1
 # Equation 12
-j = 12-1 
-# You fill this one in
-
+j = 12-1
+AA[j, 7-1] = 1
+AA[j, 8-1] = -1
+AA[j, 18-1] = -s
+AA[j, 19-1] = s
 # Equation 13
 # This is the first equation that has a W_n term in it. That does not multiply
 # any of the unknows, W_k, so we move it to the right-hand side: it is part of b
@@ -94,33 +101,43 @@ j = 13-1
 AA[j, 18-1] = 4 * s
 AA[j, 19-1] = 4 * s
 b[j] = W8 
-
 # Equation 14
-j = 14-1 
-# You fill this one in
-
+j = 14-1
+AA[j, 8-1] = 1
+AA[j, 9-1] = -1
+AA[j, 16-1] = -s
+AA[j, 17-1] = s
 # Equation 15
 j = 15-1 
-# You fill this one in
-
+AA[j, 16-1] = 4*s
+AA[j, 17-1] = 4*s
+b[j] = W9
 # Equation 16
-j = 16-1 
-# You fill this one in
-
+j = 16-1
+AA[j, 9-1] = 1
+AA[j, 10-1] = -1
+AA[j, 14-1] = -s
+AA[j, 15-1] = s
 # Equation 17
-j = 17-1 
-# You fill this one in
-
+j = 17-1
+AA[j, 14-1] = 4*s
+AA[j, 15-1] = 4*s
+b[j] = W10
 # Equation 18
-j = 18-1 
-# You fill this one in
-
+j = 18-1
+AA[j, 10-1] = 1
+AA[j, 11-1] = -1
+AA[j, 12-1] = -s
+AA[j, 13-1] = s
 # Equation 19
-j = 19-1 
-# You fill this one in
+j = 19-1
+AA[j, 12-1] = 4*s
+AA[j, 13-1] = 4*s
+b[j] = W11
 
 ## Part c - save A
-
+print(np.linalg.norm(AA))
+print(sum(sum(AA)))
 ## Part d - Find the forces
 
 ## Part e - Find the largest force
